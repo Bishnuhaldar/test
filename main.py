@@ -15,7 +15,8 @@ LANGUAGES = {
     "Spanish": "es",
     "French": "fr",
     "German": "de",
-    "Italian": "it"
+    "Italian": "it",
+    "Hindi": "hi"
 }
 
 def get_available_voices():
