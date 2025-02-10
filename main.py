@@ -9,6 +9,15 @@ load_dotenv()
 # Get API key from environment variable or Streamlit secrets
 ELEVENLABS_API_KEY = "sk_1dcdbd4432f66ad33a606f02574996f1e67c7b84d63eeecb"
 
+# Supported languages (you can expand this list)
+LANGUAGES = {
+    "English": "en",
+    "Spanish": "es",
+    "French": "fr",
+    "German": "de",
+    "Italian": "it"
+}
+
 def get_available_voices():
     """Fetch available voices from ElevenLabs API"""
     url = "https://api.elevenlabs.io/v1/voices"
@@ -68,7 +77,10 @@ def main():
     
     # Sidebar
     st.sidebar.header("Settings")
-    
+
+    # Language selection
+    selected_language = st.sidebar.selectbox("Select Language", options=list(LANGUAGES.keys()))
+
     # Get available voices
     voices = get_available_voices()
     voice_options = {voice['name']: voice['voice_id'] for voice in voices}
@@ -81,7 +93,7 @@ def main():
     
     # Text input
     text_input = st.text_area(
-        "Enter text to convert to speech",
+        f"Enter text in {selected_language}:",
         height=150
     )
     
